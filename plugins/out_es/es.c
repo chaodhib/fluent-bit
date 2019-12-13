@@ -605,6 +605,8 @@ void cb_es_flush(const void *data, size_t bytes,
                      */
                     flb_error("[out_es] error: Input\n%s\nOutput\n%s",
                              pack, c->resp.payload);
+                } else {
+                    flb_error("[out_es] error: no trace_error to show");
                 }
                 goto retry;
             }
@@ -614,6 +616,7 @@ void cb_es_flush(const void *data, size_t bytes,
             }
         }
         else {
+            flb_error("[out_es] payload_size: %i", c->resp.payload_size);
             goto retry;
         }
     }
